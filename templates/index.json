@@ -50,10 +50,10 @@
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 16,
-                "width": "fit-content",
-                "custom_width": 50,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 85,
+                "width": "custom",
+                "custom_width": 100,
+                "width_mobile": "custom",
+                "custom_width_mobile": 90,
                 "height": "fit",
                 "custom_height": 100,
                 "inherit_color_scheme": false,
@@ -70,10 +70,10 @@
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
-                "padding-block-start": 48,
-                "padding-block-end": 48,
-                "padding-inline-start": 48,
-                "padding-inline-end": 48
+                "padding-block-start": 60,
+                "padding-block-end": 60,
+                "padding-inline-start": 60,
+                "padding-inline-end": 60
               },
               "blocks": {
                 "text_gJeYVh": {

@@ -152,7 +152,7 @@
             "group_pAdzwC"
           ]
         },
-        "slide_MK7Apk": {
+        "slide_x3wXpA": {
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
@@ -162,7 +162,7 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
+            "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
             "inherit_color_scheme": true,
@@ -177,7 +177,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_7W7Dmr": {
+            "group_nJtnge": {
               "type": "group",
               "settings": {
                 "link": "",
@@ -190,10 +190,10 @@
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 16,
-                "width": "fit-content",
-                "custom_width": 50,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 85,
+                "width": "custom",
+                "custom_width": 100,
+                "width_mobile": "custom",
+                "custom_width_mobile": 90,
                 "height": "fit",
                 "custom_height": 100,
                 "inherit_color_scheme": false,
@@ -210,17 +210,17 @@
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
-                "padding-block-start": 48,
-                "padding-block-end": 48,
-                "padding-inline-start": 48,
-                "padding-inline-end": 48
+                "padding-block-start": 60,
+                "padding-block-end": 60,
+                "padding-inline-start": 60,
+                "padding-inline-end": 60
               },
               "blocks": {
-                "text_4PLMGd": {
+                "text_Bggx6t": {
                   "type": "text",
                   "settings": {
                     "text": "<h1><strong>More than just shoes — it’s a part of your story.</strong></h1>",
-                    "width": "100%",
+                    "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
                     "type_preset": "h1",
@@ -241,7 +241,7 @@
                   },
                   "blocks": {}
                 },
-                "text_KmDbC6": {
+                "text_y6weBQ": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Original sneakers from Nike and other top brands that make every step feel special.</p><p></p>",
@@ -266,7 +266,7 @@
                   },
                   "blocks": {}
                 },
-                "button_GThqbz": {
+                "button_QGjLjq": {
                   "type": "button",
                   "settings": {
                     "label": "Shop the Collection",
@@ -282,17 +282,17 @@
                 }
               },
               "block_order": [
-                "text_4PLMGd",
-                "text_KmDbC6",
-                "button_GThqbz"
+                "text_Bggx6t",
+                "text_y6weBQ",
+                "button_QGjLjq"
               ]
             }
           },
           "block_order": [
-            "group_7W7Dmr"
+            "group_nJtnge"
           ]
         },
-        "slide_JPVWUy": {
+        "slide_xwGhVQ": {
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
@@ -317,7 +317,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_zUbdtG": {
+            "group_eDc4Xf": {
               "type": "group",
               "settings": {
                 "link": "",
@@ -330,10 +330,10 @@
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 16,
-                "width": "fit-content",
-                "custom_width": 50,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 85,
+                "width": "custom",
+                "custom_width": 100,
+                "width_mobile": "custom",
+                "custom_width_mobile": 90,
                 "height": "fit",
                 "custom_height": 100,
                 "inherit_color_scheme": false,
@@ -350,18 +350,18 @@
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
-                "padding-block-start": 48,
-                "padding-block-end": 48,
-                "padding-inline-start": 48,
-                "padding-inline-end": 48
+                "padding-block-start": 60,
+                "padding-block-end": 60,
+                "padding-inline-start": 60,
+                "padding-inline-end": 60
               },
               "blocks": {
-                "text_Rctm6t": {
+                "text_hfCNzz": {
                   "type": "text",
                   "settings": {
-                    "text": "<h1><strong>More than just shoes — bit’s a part of your story.</strong></h1>",
+                    "text": "<h1><strong>More than just shoes — it’s a part of your story.</strong></h1>",
                     "width": "fit-content",
-                    "max_width": "normal",
+                    "max_width": "narrow",
                     "alignment": "left",
                     "type_preset": "h1",
                     "font": "var(--font-heading--family)",
@@ -381,7 +381,7 @@
                   },
                   "blocks": {}
                 },
-                "text_cAThnk": {
+                "text_yc3TK7": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Original sneakers from Nike and other top brands that make every step feel special.</p><p></p>",
@@ -406,7 +406,7 @@
                   },
                   "blocks": {}
                 },
-                "button_JXcKJG": {
+                "button_iLebBq": {
                   "type": "button",
                   "settings": {
                     "label": "Shop the Collection",
@@ -422,21 +422,21 @@
                 }
               },
               "block_order": [
-                "text_Rctm6t",
-                "text_cAThnk",
-                "button_JXcKJG"
+                "text_hfCNzz",
+                "text_yc3TK7",
+                "button_iLebBq"
               ]
             }
           },
           "block_order": [
-            "group_zUbdtG"
+            "group_eDc4Xf"
           ]
         }
       },
       "block_order": [
         "slide_FxFaab",
-        "slide_MK7Apk",
-        "slide_JPVWUy"
+        "slide_x3wXpA",
+        "slide_xwGhVQ"
       ],
       "name": "Hero Banner",
       "settings": {

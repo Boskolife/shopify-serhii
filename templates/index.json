@@ -230,7 +230,7 @@
                     "letter_spacing": "normal",
                     "case": "uppercase",
                     "wrap": "balance",
-                    "color": "var(--color-foreground)",
+                    "color": "var(--color-foreground-heading)",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
@@ -359,7 +359,7 @@
                 "text_Rctm6t": {
                   "type": "text",
                   "settings": {
-                    "text": "<h1><strong>More than just shoes — it’s a part of your story.</strong></h1>",
+                    "text": "<h1><strong>More than just shoes — bit’s a part of your story.</strong></h1>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -370,7 +370,7 @@
                     "letter_spacing": "normal",
                     "case": "uppercase",
                     "wrap": "balance",
-                    "color": "var(--color-foreground)",
+                    "color": "var(--color-foreground-heading)",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,

@@ -147,7 +147,8 @@
 }
 
 .product .product_info .btn {
-    width: 100%
+    width: 100%;
+    cursor: pointer;
 }
 
 .product_price {

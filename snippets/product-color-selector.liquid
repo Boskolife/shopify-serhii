@@ -1,0 +1,217 @@
+{%- liquid
+  assign color_limit = limit | default: 3
+  assign color_option = null
+  assign color_option_position = 0
+
+  # Знаходимо опцію Color (case-insensitive)
+  for option in product.options_with_values
+    assign option_name_lower = option.name | downcase
+    if option_name_lower == 'color' or option_name_lower == 'colour' or option_name_lower == 'колір'
+      assign color_option = option
+      assign color_option_position = option.position
+      break
+    endif
+  endfor
+-%}
+
+{%- comment -%}Якщо опція Color не знайдена - показати попередження{%- endcomment -%}
+{%- if color_option == null or color_option.values.size == 0 -%}
+{%- comment -%} 
+                                      Немає опції Color або немає значень. 
+                                      Можна показати повідомлення або просто не рендерити блок.
+{%- endcomment -%}
+{%- elsif color_option.values.size < 3 -%}
+  {%- comment -%} 
+                                                                            УВАГА: У продукту менше 3 кольорів ({{ color_option.values.size }}). 
+                                                                            Показуємо те що є.
+                                      {%- endcomment -%}
+  <div class="product_info__choose">
+    <span class="choose_tip">
+      {{- 'products.product.select_option' | t: option: color_option.name | default: 'Select color:' | escape -}}
+    </span>
+    <div class="product_info__choose-body">
+      {%- for value in color_option.values -%}
+        {%- liquid
+          # Пропускаємо пусті значення
+          unless value and value != blank
+            continue
+          endunless
+
+          # Знаходимо перший варіант з цим кольором
+          assign variant_for_color = null
+          assign variant_available = false
+          assign variant_quantity = 0
+
+          for variant in product.variants
+            assign option_key = 'option' | append: color_option_position
+            assign variant_option_value = variant[option_key]
+
+            if variant_option_value == value
+              assign variant_for_color = variant
+              assign variant_available = variant.available
+
+              # Перевірка inventory_quantity
+              if variant.inventory_quantity != blank
+                assign variant_quantity = variant.inventory_quantity
+              elsif variant.inventory_management == blank or variant.inventory_management == null
+                # Якщо inventory не трекається - показуємо як доступний без кількості
+                assign variant_quantity = -1
+              endif
+
+              break
+            endif
+          endfor
+        -%}
+        <button
+          class="product_info__choose-btn{% if forloop.first %} selected{% endif %}"
+          data-color="{{ value | escape }}"
+          data-option-position="{{ color_option_position }}"
+          data-variant-id="{{ variant_for_color.id }}"
+          data-available="{{ variant_available }}"
+          data-quantity="{{ variant_quantity }}"
+          data-gallery-group="{{ forloop.index0 }}"
+          {%- assign media_images = '' -%}
+          {%- assign group_index = forloop.index0 -%}
+          {%- assign start_index = group_index | times: 5 -%}
+          {%- assign end_index = start_index | plus: 5 -%}
+          {%- assign variant_url = '' -%}
+          {%- if variant_for_color and variant_for_color.featured_media -%}
+          {%- assign variant_url = variant_for_color.featured_media | image_url: width: 1000 -%}
+          {%- assign media_images = variant_url -%}
+          {%- endif -%}
+          {%- assign media_counter = 0 -%}
+          {%- for media in product.media -%}
+          {%- if media.media_type == 'image' -%}
+          {%- if media_counter >= start_index and media_counter < end_index -%}
+          {%- assign url = media | image_url: width: 1000 -%}
+          {%- unless url == variant_url -%}
+          {%- if media_images != '' -%}
+          {%- assign media_images = media_images | append: ',' -%}
+          {%- endif -%}
+          {%- assign media_images = media_images | append: url -%}
+          {%- endunless -%}
+          {%- endif -%}
+          {%- assign media_counter = media_counter | plus: 1 -%}
+          {%- endif -%}
+          {%- endfor -%}
+          data-image="{{ variant_for_color.featured_image | image_url: width: 1000 }}"
+          data-image-alt="{{ variant_for_color.featured_image.alt | escape }}"
+          data-srcset="{{ variant_for_color.featured_image | image_url: width: 352 }} 352w, {{ variant_for_color.featured_image | image_url: width: 832 }} 832w, {{ variant_for_color.featured_image | image_url: width: 1000 }} 1000w"
+          data-width="1000"
+          data-height="{{ variant_for_color.featured_image.height }}"
+          data-gallery="{{ media_images }}"
+          data-price="{{ variant_for_color.price }}"
+          data-price-formatted="{{ variant_for_color.price | money }}"
+          data-compare-at-price="{{ variant_for_color.compare_at_price }}"
+          data-compare-at-price-formatted="{{ variant_for_color.compare_at_price | money }}"
+          type="button">
+          {{- value | escape -}}
+        </button>
+      {%- endfor -%}
+    </div>
+    <div class="product_inventory" id="inventory-status">
+      <span class="inventory_message"></span>
+    </div>
+  </div>
+{%- else -%}
+  {%- comment -%}Показуємо перші 3 кольори{%- endcomment -%}
+  <div class="product_info__choose">
+    <span class="choose_tip">
+      {{- 'products.product.select_option' | t: option: color_option.name | default: 'Select color:' | escape -}}
+    </span>
+    <div class="product_info__choose-body">
+      {%- liquid
+        assign colors_shown = 0
+      -%}
+      {%- for value in color_option.values -%}
+        {%- liquid
+          # Limit перших 3 кольорів
+          if colors_shown >= color_limit
+            break
+          endif
+
+          # Пропускаємо пусті значення
+          unless value and value != blank
+            continue
+          endunless
+
+          # Знаходимо перший варіант з цим кольором
+          assign variant_for_color = null
+          assign variant_available = false
+          assign variant_quantity = 0
+
+          for variant in product.variants
+            assign option_key = 'option' | append: color_option_position
+            assign variant_option_value = variant[option_key]
+
+            if variant_option_value == value
+              assign variant_for_color = variant
+              assign variant_available = variant.available
+
+              # Перевірка inventory_quantity
+              if variant.inventory_quantity != blank
+                assign variant_quantity = variant.inventory_quantity
+              elsif variant.inventory_management == blank or variant.inventory_management == null
+                # Якщо inventory не трекається - показуємо як доступний без кількості
+                assign variant_quantity = -1
+              endif
+
+              break
+            endif
+          endfor
+        -%}
+        <button
+          class="product_info__choose-btn{% if forloop.first %} selected{% endif %}"
+          data-color="{{ value | escape }}"
+          data-option-position="{{ color_option_position }}"
+          data-variant-id="{{ variant_for_color.id }}"
+          data-available="{{ variant_available }}"
+          data-quantity="{{ variant_quantity }}"
+          data-gallery-group="{{ forloop.index0 }}"
+          {%- assign media_images = '' -%}
+          {%- assign group_index = forloop.index0 -%}
+          {%- assign start_index = group_index | times: 5 -%}
+          {%- assign end_index = start_index | plus: 5 -%}
+          {%- assign variant_url = '' -%}
+          {%- if variant_for_color and variant_for_color.featured_media -%}
+          {%- assign variant_url = variant_for_color.featured_media | image_url: width: 1000 -%}
+          {%- assign media_images = variant_url -%}
+          {%- endif -%}
+          {%- assign media_counter = 0 -%}
+          {%- for media in product.media -%}
+          {%- if media.media_type == 'image' -%}
+          {%- if media_counter >= start_index and media_counter < end_index -%}
+          {%- assign url = media | image_url: width: 1000 -%}
+          {%- unless url == variant_url -%}
+          {%- if media_images != '' -%}
+          {%- assign media_images = media_images | append: ',' -%}
+          {%- endif -%}
+          {%- assign media_images = media_images | append: url -%}
+          {%- endunless -%}
+          {%- endif -%}
+          {%- assign media_counter = media_counter | plus: 1 -%}
+          {%- endif -%}
+          {%- endfor -%}
+          data-image="{{ variant_for_color.featured_image | image_url: width: 1000 }}"
+          data-image-alt="{{ variant_for_color.featured_image.alt | escape }}"
+          data-srcset="{{ variant_for_color.featured_image | image_url: width: 352 }} 352w, {{ variant_for_color.featured_image | image_url: width: 832 }} 832w, {{ variant_for_color.featured_image | image_url: width: 1000 }} 1000w"
+          data-width="1000"
+          data-height="{{ variant_for_color.featured_image.height }}"
+          data-gallery="{{ media_images }}"
+          data-price="{{ variant_for_color.price }}"
+          data-price-formatted="{{ variant_for_color.price | money }}"
+          data-compare-at-price="{{ variant_for_color.compare_at_price }}"
+          data-compare-at-price-formatted="{{ variant_for_color.compare_at_price | money }}"
+          type="button">
+          {{- value | escape -}}
+        </button>
+        {%- liquid
+          assign colors_shown = colors_shown | plus: 1
+        -%}
+      {%- endfor -%}
+    </div>
+    <div class="product_inventory" id="inventory-status">
+      <span class="inventory_message"></span>
+    </div>
+  </div>
+{%- endif -%}

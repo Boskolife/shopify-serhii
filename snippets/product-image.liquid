@@ -1,0 +1,47 @@
+{%- comment -%} 
+              Renders a product image with sensible fallbacks 
+              Accepts:
+              - product: Product object (required if image not passed)
+              - image: Image object (optional; e.g., product.featured_image)
+              - width: Number (optional; default: 1000)
+              - class: String (optional; extra classes for the <img>)
+              - alt_fallback: String (optional; used if no image alt and no product title)
+              - placeholder_asset: String (optional; theme asset for fallback) 
+              Usage: 
+              {% render 'product-image', product: product, width: 1000, class: 'product_img-el' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign img_width = width | default: 1000
+  assign extra_class = class | default: ''
+  assign placeholder_name = placeholder_asset | default: 'placeholder-images.webp'
+
+  # Determine image source: explicit image first, then product.featured_image
+  assign img = image
+  if img == blank and product
+    assign img = product.featured_image
+  endif
+
+  # Build alt text priority: image.alt - > product.title - > alt_fallback - > translation
+  assign alt_text = ''
+  if img and img.alt != blank
+    assign alt_text = img.alt
+  elsif product and product.title != blank
+    assign alt_text = product.title
+  elsif alt_fallback != blank
+    assign alt_text = alt_fallback
+  else
+    assign alt_text = 'products.product.product_image' | t | default: 'Product image'
+  endif
+
+  assign img_class = extra_class | append: ' js-product-main-image'
+-%}
+
+{%- if img -%}
+  {{- img | image_url: width: img_width | image_tag: alt: alt_text, loading: 'lazy', class: img_class -}}
+{%- else -%}
+  <img
+    src="{{- placeholder_name | asset_url -}}"
+    alt="{{- alt_text | escape -}}"
+    class="{{ img_class }} product-placeholder">
+{%- endif -%}

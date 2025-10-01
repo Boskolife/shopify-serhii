@@ -141,9 +141,9 @@
     };
     
     // Инициализируем галерею из полного списка картинок
-      function initAllImagesGallery() {
-      const swiperMainContainer = document.querySelector('.product-swiper-main');
-      const swiperThumbsContainer = document.querySelector('.product-swiper-thumbs');
+    function initAllImagesGallery() {
+    const swiperMainContainer = document.querySelector('.product-swiper-main');
+    const swiperThumbsContainer = document.querySelector('.product-swiper-thumbs');
     const all = (window.PRODUCT_ALL_IMAGES || []).filter(Boolean);
     if (window.__DEBUG_BANNER) console.log('[BannerProduct] Initializing gallery with', all.length, 'total images');
     if (!swiperMainContainer || !swiperThumbsContainer) return;

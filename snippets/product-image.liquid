@@ -1,14 +1,14 @@
 {%- comment -%} 
-              Renders a product image with sensible fallbacks 
-              Accepts:
-              - product: Product object (required if image not passed)
-              - image: Image object (optional; e.g., product.featured_image)
-              - width: Number (optional; default: 1000)
-              - class: String (optional; extra classes for the <img>)
-              - alt_fallback: String (optional; used if no image alt and no product title)
-              - placeholder_asset: String (optional; theme asset for fallback) 
-              Usage: 
-              {% render 'product-image', product: product, width: 1000, class: 'product_img-el' %}
+                  Renders a product image with sensible fallbacks 
+                  Accepts:
+                  - product: Product object (required if image not passed)
+                  - image: Image object (optional; e.g., product.featured_image)
+                  - width: Number (optional; default: 1000)
+                  - class: String (optional; extra classes for the <img>)
+                  - alt_fallback: String (optional; used if no image alt and no product title)
+                  - placeholder_asset: String (optional; theme asset for fallback) 
+                  Usage: 
+                  {% render 'product-image', product: product, width: 1000, class: 'product_img-el' %}
 {%- endcomment -%}
 
 {%- liquid

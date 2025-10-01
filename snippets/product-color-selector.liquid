@@ -17,14 +17,14 @@
 {%- comment -%}Якщо опція Color не знайдена - показати попередження{%- endcomment -%}
 {%- if color_option == null or color_option.values.size == 0 -%}
 {%- comment -%} 
-                                      Немає опції Color або немає значень. 
-                                      Можна показати повідомлення або просто не рендерити блок.
+                                        Немає опції Color або немає значень. 
+                                        Можна показати повідомлення або просто не рендерити блок.
 {%- endcomment -%}
 {%- elsif color_option.values.size < 3 -%}
   {%- comment -%} 
-                                                                            УВАГА: У продукту менше 3 кольорів ({{ color_option.values.size }}). 
-                                                                            Показуємо те що є.
-                                      {%- endcomment -%}
+                                                                                УВАГА: У продукту менше 3 кольорів ({{ color_option.values.size }}). 
+                                                                                Показуємо те що є.
+                                        {%- endcomment -%}
   <div class="product_info__choose">
     <span class="choose_tip">
       {{- 'products.product.select_option' | t: option: color_option.name | default: 'Select color:' | escape -}}
@@ -155,7 +155,6 @@
                 # Якщо inventory не трекається - показуємо як доступний без кількості
                 assign variant_quantity = -1
               endif
-
               break
             endif
           endfor
